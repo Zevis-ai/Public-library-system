@@ -1,5 +1,5 @@
 import express from 'express'
-import { addBook, deleteBook, getAllBooks, getNumOfBooks } from '../controllers/bookControllers.js'
+import { addBook, deleteBook, getAllBooks, getNumOfBooks , isBookBorrowed} from '../controllers/bookControllers.js'
 
 // getAllBooks()
 // getNumOfBooks()// only admin
@@ -16,7 +16,7 @@ bookRouter.get('/numOfBooks', getNumOfBooks)
 bookRouter.post('/add', addBook)
 bookRouter.delete('/delete/:bookId', deleteBook)
 // bookRouter.put('/update', upDateBook)
-// bookRouter.get('/isBookBorrowed', isBookBorrowed)
+bookRouter.get('/isBookBorrowed/:bookId', isBookBorrowed)
 // bookRouter.get('/getPrice', getPrice)
 
 export default bookRouter

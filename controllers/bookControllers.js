@@ -74,3 +74,17 @@ export const deleteBook = async (req, res) =>{
         })
     }
 }
+
+export const isBookBorrowed = async (req, res) =>{
+    try {
+        const { bookId } = req.params
+        const book = await Book.findById(bookId)
+        res.status(200).json({
+            isAvailable: book.isAvailable
+        })
+    } catch (error) {
+        res.status(500).json({
+            error
+        })
+    }
+}
