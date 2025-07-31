@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'
 export const register = (req, res) => {
     const {name, email, password } = req.body;
 
-    const {error, value} = userValidation(req.body)
+    const {error, value} = userValidation.validate(req.body)
     if (error) {
         return res.status(400).json({
             message: error.details[0].message
@@ -75,7 +75,8 @@ export const login = (req, res) => {
                 const token = jwt.sign(
                     {
                         id: user._id,
-                        email: user.email
+                        email: user.email,
+                        role: user.role
                     },
                     process.env.JWT_KEY,
                     {
