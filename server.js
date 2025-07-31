@@ -14,5 +14,5 @@ app.use('/api', configRouter)
 
 app.listen(PORT, ()=>{
     console.log(`server is running on port ${PORT}`);
-    console.log(`CLICK ON THIS LINK http://127.0.0.1:${PORT}/api//user/register`);
+    console.log(`CLICK ON THIS LINK http://127.0.0.1:${PORT}/api/book/all`);
 })

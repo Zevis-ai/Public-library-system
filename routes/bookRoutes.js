@@ -1,5 +1,6 @@
 import express from 'express'
 import { addBook, deleteBook, getAllBooks, getNumOfBooks , isBookBorrowed} from '../controllers/bookControllers.js'
+import { adminMid } from '../middlewares/admin.js'
 
 // getAllBooks()
 // getNumOfBooks()// only admin
@@ -13,8 +14,8 @@ const bookRouter = express.Router()
 
 bookRouter.get('/all', getAllBooks)
 bookRouter.get('/numOfBooks', getNumOfBooks)
-bookRouter.post('/add', addBook)
-bookRouter.delete('/delete/:bookId', deleteBook)
+bookRouter.post('/add',adminMid, addBook)
+bookRouter.delete('/delete/:bookId',adminMid, deleteBook)
 // bookRouter.put('/update', upDateBook)
 bookRouter.get('/isBookBorrowed/:bookId', isBookBorrowed)
 // bookRouter.get('/getPrice', getPrice)

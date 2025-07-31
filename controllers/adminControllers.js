@@ -18,3 +18,16 @@ export const getNumOfMembers = async (req, res) => {
     }
 }
     
+
+export const getNumOfBooksBorrowed = async (req, res) => {
+    try {
+        const numOfBooksBorrowed = await Book.countDocuments({ isAvailable: false })
+        res.status(200).json({
+            numOfBooksBorrowed
+        })
+    } catch (error) {
+        res.status(500).json({
+            error
+        })
+    }
+}

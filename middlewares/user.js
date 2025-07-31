@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 
-export const adminMid = (req, res, next) => {
+export const userMid = (req, res, next) => {
     const { token } = req.headers;
 
     if (!token) {
@@ -14,10 +14,10 @@ export const adminMid = (req, res, next) => {
         const decoded = jwt.verify(token, process.env.JWT_KEY);
         req.user = decoded;
 
-        if (req.user.role !== 'admin') {
+        if (req.user.role !== 'user') {
             return res.status(403).json({
                 success: false,
-                message: ' admin only'
+                message: 'Admin only'
             });
         }
 
@@ -26,7 +26,7 @@ export const adminMid = (req, res, next) => {
         console.error(error.message);
         return res.status(401).json({
             success: false,
-            message: 'not good token'
+            message: 'invalid token'
         });
     }
 }
